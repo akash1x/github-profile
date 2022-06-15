@@ -8,9 +8,9 @@ const RepoDetailsSchema = new Schema({
   },
   repoList: [
     {
+      repo_url: String,
       description: String,
       stars_count: Number,
-      repo_url: String,
       repo_name: String,
     },
   ],

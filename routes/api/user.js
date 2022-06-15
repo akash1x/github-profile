@@ -6,21 +6,26 @@ const User = require("../../models/user");
 router.get("/", async (req, res) => {
   try {
     const username = req.query.username;
-    //const profile = await Profile.find();
+
+    //Find it in the DB
+    const user = await User.findOne({ name: username });
+    if (user) return res.status(200).json(user);
+
+    //Not found in DB, then try to hit the API
     const response = await axios.get(
       `https://api.github.com/users/${username}`
     );
+
+    //If username is not valid
     const data = await response.data;
-    if (!data) return res.json({ msg: "Invalid username" });
+    // if (!data) return res.status(400).json({ msg: "Invalid username" });
 
-    const user = await User.findOne({ name: username });
-    console.log(user);
-    if (user) return res.json(user);
-
+    //saved the details for further API request in DB
     const savedUser = await savetoDB(data);
-    return res.json(savedUser);
+    return res.status(200).json(savedUser);
   } catch (err) {
     console.log(err);
+    return res.status(400).json({ msg: "Invalid username" });
   }
 });
 

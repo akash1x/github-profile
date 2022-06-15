@@ -18,15 +18,20 @@ const UserDetail = ({ user }) => {
         <tbody>
           <tr>
             <th>{user.name}</th>
-            <td>
-              <a
-                href={`https://github.com/${user.name}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={user.image_url} height="50px" width={"50px"} />
-              </a>{" "}
-            </td>
+            {user.image_url ? (
+              <td>
+                <a
+                  href={`https://github.com/${user.name}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img src={user.image_url} height="50px" width={"50px"} />
+                </a>{" "}
+              </td>
+            ) : (
+              <td></td>
+            )}
+
             <td>{user.followers_count}</td>
             <td>{user.following_count}</td>
             <td>{user.repository_list_size}</td>

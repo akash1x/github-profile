@@ -4,12 +4,21 @@ import { useState } from "react";
 import axios from "axios";
 const SearchUserBar = ({ setUser }) => {
   const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.get(`http://localhost:5000/api/user`, {
-      params: { username: username },
-    });
-    setUser(res.data);
+    setError("");
+    try {
+      const res = await axios.get(`http://localhost:5000/api/user`, {
+        params: { username: username },
+      });
+      setUser(res.data);
+    } catch (err) {
+      console.log(err.response);
+      if (err.response.status == 400) {
+        setError(err.response.data.msg);
+      }
+    }
   };
 
   return (
@@ -17,6 +26,7 @@ const SearchUserBar = ({ setUser }) => {
       <Form onSubmit={onSubmit}>
         <FormGroup>
           <Label for="item">Username</Label>
+          <p className="text-danger">{error}</p>
           <Input
             type="text"
             name="username"

@@ -6,21 +6,22 @@ const RepoDetails = require("../../models/repo");
 router.get("/", async (req, res) => {
   try {
     const username = req.query.githubHandle;
-    //const profile = await Profile.find();
+
+    const repoDetails = await RepoDetails.findOne({ owner_name: username });
+    if (repoDetails) return res.status(200).json(repoDetails);
+
     const response = await axios.get(
       `https://api.github.com/users/${username}/repos`
     );
-    const data = await response.data;
-    if (!data) return res.json({ msg: "Invalid github handle" });
 
-    const repoDetails = await RepoDetails.findOne({ owner_name: username });
-    console.log(repoDetails);
-    if (repoDetails) return res.json(repoDetails);
+    const data = await response.data;
+    // if (!data) return res.status(400).json({ msg: "Invalid github handle" });
 
     const savedRepoDetails = await savetoDB(data);
-    return res.json(savedRepoDetails);
+    return res.status(200).json(savedRepoDetails);
   } catch (err) {
     console.log(err);
+    return res.status(400).json({ msg: "Invalid github handle" });
   }
 });
 
@@ -29,9 +30,9 @@ async function savetoDB(data) {
   try {
     for (let i = 0; i < data.length; i++) {
       const repoDetails = {
+        repo_url: data[i].html_url,
         description: data[i].description,
         stars_count: data[i].stargazers_count,
-        repo_url: data[i].html_url,
         repo_name: data[i].name,
       };
       repoDetailsArr.push(repoDetails);
