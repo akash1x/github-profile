@@ -1,8 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
-const { application } = require("express");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -18,9 +16,9 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-const profile = require("./routes/api/profile");
+const repo = require("./routes/api/repo");
 const user = require("./routes/api/user");
-app.use("/api/profile", profile);
+app.use("/api/repo", repo);
 app.use("/api/user", user);
 
 const port = process.env.PORT || 5000;

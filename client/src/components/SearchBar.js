@@ -6,10 +6,11 @@ const SearchBar = ({ setRepoDetails }) => {
   const [githubHandle, setGithubHandle] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.get(`http://localhost:5000/api/profile`, {
+    const res = await axios.get(`http://localhost:5000/api/repo`, {
       params: { githubHandle: githubHandle },
     });
-    setRepoDetails(res.data.repoList);
+    console.log(res.data);
+    setRepoDetails(res.data);
   };
 
   return (

@@ -8,7 +8,6 @@ const RepoDetailsSchema = new Schema({
   },
   repoList: [
     {
-      owner_name: String,
       description: String,
       stars_count: Number,
       repo_url: String,

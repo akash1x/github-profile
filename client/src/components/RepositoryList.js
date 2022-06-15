@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Table } from "reactstrap";
 
 const RepositoryList = ({ repoDetails }) => {
+  console.log(repoDetails);
   return (
     <Container>
       <Table>
@@ -16,11 +17,11 @@ const RepositoryList = ({ repoDetails }) => {
           </tr>
         </thead>
         <tbody>
-          {repoDetails.map((repo) => (
+          {repoDetails.repoList.map((repo) => (
             <tr>
               <th>1</th>
               <td>{repo.repo_name}</td>
-              <td>@mdo</td>
+              <td>{repoDetails.owner_name}</td>
               <td>{repo.description}</td>
               <td>{repo.stars_count}</td>
               <td>{repo.repo_url}</td>
