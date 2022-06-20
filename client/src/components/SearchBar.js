@@ -3,14 +3,19 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { useState } from "react";
 import axios from "axios";
 const SearchBar = ({ setRepoDetails }) => {
-  const [githubHandle, setGithubHandle] = useState("");
+  const [username, setUsername] = useState("");
   const [error, setError] = useState("");
+  const repoDetailsInit = {
+    owner_name: "",
+    repoList: [],
+  };
   const onSubmit = async (e) => {
     e.preventDefault();
+    setRepoDetails(repoDetailsInit);
     setError("");
     try {
-      const res = await axios.get(`http://localhost:5000/api/repo`, {
-        params: { githubHandle: githubHandle },
+      const res = await axios.get(`http://localhost:5000/api/repositories`, {
+        params: { username: username },
       });
       setRepoDetails(res.data);
     } catch (err) {
@@ -25,17 +30,17 @@ const SearchBar = ({ setRepoDetails }) => {
     <div className="container">
       <Form onSubmit={onSubmit}>
         <FormGroup>
-          <Label for="item">Github handle</Label>
+          <Label for="item">Github username</Label>
           <p className="text-danger">{error}</p>
           <Input
             type="text"
-            name="githubHandle"
+            name="username"
             id="search"
-            placeholder="Enter github handle"
-            onChange={(e) => setGithubHandle(e.target.value)}
+            placeholder="Enter username"
+            onChange={(e) => setUsername(e.target.value)}
           />
-          <Button color="dark" style={{ marginTop: "2rem" }}>
-            Search Github Handle
+          <Button color="dark" className="btn-margin-top">
+            Search Repositories
           </Button>
         </FormGroup>
       </Form>

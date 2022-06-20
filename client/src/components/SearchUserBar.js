@@ -7,6 +7,7 @@ const SearchUserBar = ({ setUser }) => {
   const [error, setError] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
+    setUser({});
     setError("");
     try {
       const res = await axios.get(`http://localhost:5000/api/user`, {
@@ -25,7 +26,7 @@ const SearchUserBar = ({ setUser }) => {
     <div className="container">
       <Form onSubmit={onSubmit}>
         <FormGroup>
-          <Label for="item">Username</Label>
+          <Label for="item">Github username</Label>
           <p className="text-danger">{error}</p>
           <Input
             type="text"
@@ -34,8 +35,8 @@ const SearchUserBar = ({ setUser }) => {
             placeholder="Enter username"
             onChange={(e) => setUsername(e.target.value)}
           />
-          <Button color="dark" style={{ marginTop: "2rem" }}>
-            Search User
+          <Button color="dark" className="btn-margin-top">
+            Search User Details
           </Button>
         </FormGroup>
       </Form>

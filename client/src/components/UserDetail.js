@@ -20,12 +20,8 @@ const UserDetail = ({ user }) => {
             <th>{user.name}</th>
             {user.image_url ? (
               <td>
-                <a
-                  href={`https://github.com/${user.name}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src={user.image_url} height="50px" width={"50px"} />
+                <a href={`https://github.com/${user.name}`} target="_blank">
+                  <img src={user.image_url} className="img-style" />
                 </a>{" "}
               </td>
             ) : (

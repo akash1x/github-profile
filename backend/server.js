@@ -16,9 +16,9 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-const repo = require("./routes/api/repo");
+const repositories = require("./routes/api/repositories");
 const user = require("./routes/api/user");
-app.use("/api/repo", repo);
+app.use("/api/repositories", repositories);
 app.use("/api/user", user);
 
 const port = process.env.PORT || 5000;

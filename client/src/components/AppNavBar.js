@@ -3,24 +3,20 @@ import { Nav, Navbar, NavItem } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const AppNavBar = () => {
-  const linkStyle = {
-    textDecoration: "none",
-    color: "black",
-  };
   return (
     <div>
       <Navbar color="light" expand="md" light>
-        <Link to="/" style={linkStyle} className="me-5">
+        <Link to="/" className="me-5 link-style">
           Home
         </Link>
         <Nav className="me-auto" navbar>
           <NavItem>
-            <Link to="/searchRepos" style={linkStyle} className="me-5">
+            <Link to="/searchRepos" className="me-5 link-style">
               Search Repositories
             </Link>
           </NavItem>
           <NavItem>
-            <Link to="/searchUser" style={linkStyle}>
+            <Link to="/searchUser" className="link-style">
               Search User
             </Link>
           </NavItem>

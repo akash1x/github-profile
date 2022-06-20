@@ -1,29 +1,28 @@
 {
-  "name": "github-profile",
+  "name": "github-assignment",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix client",
+    "client": "cd ../client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "client-install": "npm i --prefix client"
+    "client-install": "cd ../client && npm i"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akash1x/github-profile.git"
+    "url": "git+https://github.com/akashdohare1x/github-assignment.git"
   },
-  "author": "Akash Dohare",
+  "author": "Akash",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akash1x/github-profile/issues"
+    "url": "https://github.com/akashdohare1x/github-assignment/issues"
   },
-  "homepage": "https://github.com/akash1x/github-profile#readme",
+  "homepage": "https://github.com/akashdohare1x/github-assignment#readme",
   "dependencies": {
     "axios": "^0.27.2",
-    "concurrently": "^7.2.1",
+    "concurrently": "^7.2.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",

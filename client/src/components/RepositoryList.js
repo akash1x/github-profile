@@ -8,7 +8,6 @@ const RepositoryList = ({ repoDetails }) => {
       <Table>
         <thead>
           <tr>
-            <th>#</th>
             <th>Repository</th>
             <th>Owner Name</th>
             <th>Description</th>
@@ -19,12 +18,13 @@ const RepositoryList = ({ repoDetails }) => {
         <tbody>
           {repoDetails.repoList.map((repo) => (
             <tr>
-              <th>1</th>
               <td>{repo.repo_name}</td>
               <td>{repoDetails.owner_name}</td>
               <td>{repo.description}</td>
               <td>{repo.stars_count}</td>
-              <td>{repo.repo_url}</td>
+              <td>
+                <a href={repo.repo_url}>{repo.repo_url}</a>
+              </td>
             </tr>
           ))}
         </tbody>
